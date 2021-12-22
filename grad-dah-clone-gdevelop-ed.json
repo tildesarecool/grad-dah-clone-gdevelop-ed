@@ -14,7 +14,7 @@
     "pixelsRounding": false,
     "projectUuid": "b60a144b-fda5-48c5-93f8-14b9e41ae1c3",
     "scaleMode": "linear",
-    "sizeOnStartupMode": "adaptWidth",
+    "sizeOnStartupMode": "adaptHeight",
     "useExternalSourceFiles": false,
     "version": "1.0.0",
     "name": "Gradius clone - GDevelop",
@@ -367,6 +367,15 @@
         "name": "ios-icon-20.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "space-shooter-assets/laser_enemy.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "space-shooter-assets\\laser_enemy.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -450,9 +459,57 @@
           "name": "Background",
           "persistentUuid": "79a9688d-de65-499f-9fc5-b4141f6663be",
           "width": 0,
-          "x": 0,
-          "y": 0,
+          "x": 1,
+          "y": -1,
           "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "Enemy1",
+          "persistentUuid": "be2724a4-92da-43dd-bf1e-c5e291b62aa7",
+          "width": 0,
+          "x": 640,
+          "y": 32,
+          "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "Enemy2",
+          "persistentUuid": "0e14d3d3-25cf-4a74-8257-ba79553432f8",
+          "width": 0,
+          "x": 672,
+          "y": 192,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "Enemy3",
+          "persistentUuid": "ace85805-55d8-44c3-8ee9-62bfe6a30b62",
+          "width": 0,
+          "x": 704,
+          "y": 400,
+          "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -562,7 +619,7 @@
           ]
         },
         {
-          "height": 500,
+          "height": 550,
           "name": "Background",
           "tags": "",
           "texture": "space-shooter-assets\\background.png",
@@ -575,9 +632,9 @@
               "name": "StayOnScreen",
               "type": "StayOnScreen::StayOnScreen",
               "MarginTop": 10,
-              "MarginBottom": 70,
-              "MarginLeft": 10,
-              "MarginRight": 70
+              "MarginBottom": 0,
+              "MarginLeft": 0,
+              "MarginRight": 0
             }
           ]
         },
@@ -639,6 +696,12 @@
           "variables": [],
           "effects": [],
           "behaviors": [
+            {
+              "name": "FireBullet",
+              "type": "FireBullet::FireBullet",
+              "FireCooldown": 0.1,
+              "HasJustFired": false
+            },
             {
               "name": "Health",
               "type": "Health::Health",
@@ -711,6 +774,52 @@
                     {
                       "hasCustomCollisionMask": false,
                       "image": "space-shooter-assets\\enemy3.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "BulletEnemy",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [
+            {
+              "extraBorder": 0,
+              "name": "DestroyOutside",
+              "type": "DestroyOutsideBehavior::DestroyOutside"
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "space-shooter-assets\\laser_enemy.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
@@ -962,20 +1071,12 @@
               "parameters": [
                 "Player",
                 "150",
-                "",
+                "0",
                 "0"
               ],
               "subInstructions": []
             }
           ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [],
           "events": [
             {
               "disabled": false,
@@ -1108,6 +1209,199 @@
               "subInstructions": []
             }
           ],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PosX"
+                  },
+                  "parameters": [
+                    "Enemies",
+                    "<=",
+                    "CameraX()+150"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Enemy3",
+                        ">=",
+                        "300"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Enemy3",
+                        "<",
+                        "450"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Enemy3",
+                        ">",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Enemy3",
+                        "<=",
+                        "250"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "AddForceAL"
+                      },
+                      "parameters": [
+                        "Enemy3",
+                        "-90",
+                        "300",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "AddForceAL"
+                      },
+                      "parameters": [
+                        "Enemy3",
+                        "-90",
+                        "300",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "AddForceAL"
+                      },
+                      "parameters": [
+                        "Enemy3",
+                        "90",
+                        "300",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "AddForceAL"
+                      },
+                      "parameters": [
+                        "Enemy3",
+                        "90",
+                        "300",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "1",
+                    "\"EnemyFire\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "FireBullet::FireBullet::Fire"
+                  },
+                  "parameters": [
+                    "Enemy2",
+                    "FireBullet",
+                    "Enemy2.X()-75",
+                    "Enemy2.Y()+30",
+                    "BulletEnemy",
+                    "180",
+                    "700",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ChangeScale"
+              },
+              "parameters": [
+                "Enemies",
+                "=",
+                "0.6"
+              ],
+              "subInstructions": []
+            }
+          ],
           "events": []
         },
         {
@@ -1118,11 +1412,75 @@
             {
               "type": {
                 "inverted": false,
-                "value": "Health::Health::IsJustDamaged"
+                "value": "VarScene"
+              },
+              "parameters": [
+                "IsDamaged",
+                ">=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Health::Health::Hit"
               },
               "parameters": [
                 "Player",
                 "Health",
+                "Variable(IsDamaged)",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "IsDamaged",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Player",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Player",
+                "Enemies",
+                "",
+                "",
                 ""
               ],
               "subInstructions": []
@@ -1138,6 +1496,111 @@
                 "IsDamaged",
                 "=",
                 "40"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "Enemies",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Player",
+                "BulletEnemy",
+                "",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "IsDamaged",
+                "=",
+                "30"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "BulletEnemy",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "IsDamaged",
+                ">=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Health::Health::Hit"
+              },
+              "parameters": [
+                "Player",
+                "Health",
+                "Variable(IsDamaged)",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "IsDamaged",
+                "=",
+                "0"
               ],
               "subInstructions": []
             }
@@ -1172,27 +1635,6 @@
                 "",
                 "\"Base Scene\"",
                 ""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ChangeScale"
-              },
-              "parameters": [
-                "Enemies",
-                "=",
-                "0.6"
               ],
               "subInstructions": []
             }
