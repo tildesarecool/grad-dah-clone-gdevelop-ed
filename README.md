@@ -1,30 +1,11 @@
- 
-
+  
+  
 
 > Open this page at [https://github.com/tildesarecool/grad-dah-clone-gdevelop-ed](https://github.com/tildesarecool/grad-dah-clone-gdevelop-ed)
 
+> This is part of [day-by-day project I've introduced on my blog](https://tildesare.cool/2021/12/31/one-per-day-the-picking-a-game-making-platform-project/), [*Tildes on the side*](https://tildesare.cool/).
 
+> The blog post for this day in the project is located at [https://tildesare.cool/2022/01/02/picking-a-game-making-platform-day-2-gdevelop](https://tildesare.cool/2022/01/02/picking-a-game-making-platform-day-2-gdevelop)
 
-
-## Edit this project ![Build status badge (coming soon)]
-
-To edit this repository in GDevelop (coming soon).
-
-
-<!-- 
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/tildesarecool/grad-dah-clone** and click import
-
-## Blocks preview
-
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
-
-![A rendered view of the blocks](https://github.com/tildesarecool/grad-dah-clone/raw/master/.github/makecode/blocks.png)
-
-#### Metadata (used for search, rendering)
-
-* for PXT/arcade
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
--->
+## In summary
+I only worked with GDevelop for a few hours and off of a really badly paced and out of date video tutorial. I probably didn't give nearly enough of a chance but I felt like I just couldn't get the hang of it. 
